@@ -14,10 +14,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Red_Heart_Icon.png'); /* Imagem de coração */
-            background-size: 50px 50px; /* Ajustando o tamanho do coração */
-            background-position: center;
-            background-repeat: repeat; /* Faz os corações se repetirem pelo fundo */
+            overflow: hidden;
+            position: relative;
         }
 
         .container {
@@ -27,6 +25,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 80%;
             max-width: 400px;
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
@@ -44,6 +44,7 @@
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            position: relative;
         }
 
         .question:hover {
@@ -57,19 +58,108 @@
             color: #ffffff;
             margin-top: 20px;
         }
+
+        /* Estilo dos corações flutuantes */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Red_Heart_Icon.png');
+            background-size: cover;
+            animation: floatHeart 10s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(50px) translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50px) translateY(-200px);
+                opacity: 0.7;
+            }
+        }
+
+        /* Gerar vários corações de maneira aleatória */
+        .heart:nth-child(1) {
+            left: 10%;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            left: 30%;
+            animation-duration: 8s;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            left: 50%;
+            animation-duration: 10s;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(4) {
+            left: 70%;
+            animation-duration: 14s;
+            animation-delay: 4s;
+        }
+
+        .heart:nth-child(5) {
+            left: 90%;
+            animation-duration: 9s;
+            animation-delay: 3s;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Corpos dos corações animados -->
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
     <div class="container">
-        <h1>If you still miss me...</h1>
-        <button class="question" onclick="revealAnswer()">Clique aqui</button>
-        <p id="response" class="response">Come back to me</p>
+        <h1>Do you miss me...?</h1>
+        <button class="question" onclick="handleChoice('yes')">Yes</button>
+        <button class="question" id="noButton" onclick="handleChoice('no')">No</button>
+        <p id="response" class="response">Come back to me ❤️🦊</p>
+
+        <!-- Arquivo de áudio que será tocado -->
+        <audio id="romanticAudio" src="c:\Users\dellb\Downloads\Lana Del Rey - Trash (Miss America) ( Sub Español ).mp3" preload="auto"></audio>
     </div>
 
     <script>
-        function revealAnswer() {
-            document.getElementById("response").style.display = "block"; // Revela a resposta
+        function handleChoice(choice) {
+            if (choice === 'yes') {
+                // Revela a resposta
+                document.getElementById("response").style.display = "block";
+                // Toca o áudio
+                var audio = document.getElementById("romanticAudio");
+                audio.play();
+            } else if (choice === 'no') {
+                // Faz a pegadinha: move o botão "No" para um lugar aleatório
+                var noButton = document.getElementById("noButton");
+                moveButton(noButton);
+            }
+        }
+
+        function moveButton(button) {
+            // Define uma posição aleatória dentro da tela
+            var x = Math.random() * (window.innerWidth - button.offsetWidth);
+            var y = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.position = "absolute";
+            button.style.left = x + "px";
+            button.style.top = y + "px";
         }
     </script>
 
