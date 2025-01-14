@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma Romântico</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffccf2; /* Rosa suave */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Red_Heart_Icon.png'); /* Imagem de coração */
+            background-size: 50px 50px; /* Ajustando o tamanho do coração */
+            background-position: center;
+            background-repeat: repeat; /* Faz os corações se repetirem pelo fundo */
+        }
+
+        .container {
+            background-color: #ff66b2; /* Rosa mais forte */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            background-color: #ff3366; /* Vermelho mais forte */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .question:hover {
+            background-color: #ff0044; /* Vermelho mais intenso */
+        }
+
+        .response {
+            display: none;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>If you still miss me...</h1>
+        <button class="question" onclick="revealAnswer()">Clique aqui</button>
+        <p id="response" class="response">Come back to me</p>
+    </div>
+
+    <script>
+        function revealAnswer() {
+            document.getElementById("response").style.display = "block"; // Revela a resposta
+        }
+    </script>
+
+</body>
+</html>
